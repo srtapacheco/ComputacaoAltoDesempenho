@@ -20,8 +20,8 @@ int main()
 {
     // Inicialização de variáveis
     int n_min = 0;             // Tamanho mínimo do problema
-    int n_max = 26754;           // Tamanho máximo do problema
-    int n_step = 1000;            // Tamanho do passo para aumentar o tamanho do problema
+    int n_max = 40000;           // Tamanho máximo do problema
+    int n_step = 10000;            // Tamanho do passo para aumentar o tamanho do problema
     double **A, *x, *b;         // Matrizes A, x e b
     int i, j, k, n;             // Contadores de loop
     double start, end, elapsed; // Variáveis para medir o tempo de execucao
