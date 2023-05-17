@@ -1,5 +1,4 @@
 
-
 import matplotlib.pyplot as plt
 
 # Leitura dos dados do arquivo

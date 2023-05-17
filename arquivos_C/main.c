@@ -1,11 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <math.h>
-#include <stdbool.h>
-#include <unistd.h>
 
-// Função para medir o tempo de execucao
+// Função para medir o tempo de execução
 double get_execution_time(struct timespec start, struct timespec end)
 {
     double t;
@@ -19,9 +16,9 @@ double get_execution_time(struct timespec start, struct timespec end)
 int main()
 {
     // Inicialização de variáveis
-    int n_min = 0;             // Tamanho mínimo do problema
-    int n_max = 40000;           // Tamanho máximo do problema
-    int n_step = 10000;            // Tamanho do passo para aumentar o tamanho do problema
+    int n_min = 0;              // Tamanho mínimo do problema
+    int n_max = 40000;          // Tamanho máximo do problema
+    int n_step = 10000;         // Tamanho do passo para aumentar o tamanho do problema
     double **A, *x, *b;         // Matrizes A, x e b
     int i, j, k, n;             // Contadores de loop
     double start, end, elapsed; // Variáveis para medir o tempo de execucao
@@ -47,10 +44,12 @@ int main()
     }
 
     // Loop para aumentar o tamanho do problema e medir o tempo de execucao
-    FILE *gp = popen("gnuplot -persist", "w");
-    fprintf(gp, "set xlabel 'Tamanho do problema'\n");
-    fprintf(gp, "set ylabel 'Tempo de execucao (s)'\n");
-    fprintf(gp, "plot '-' title 'Tempo de execucao' with linespoints\n");
+    FILE *file = fopen("tempo_execucao.txt", "w");
+    if (file == NULL)
+    {
+        printf("Erro ao abrir o arquivo.\n");
+        return 1;
+    }
     for (n = n_min; n <= n_max; n += n_step)
     {
         // Preenchimento da matriz b com zeros
@@ -75,11 +74,9 @@ int main()
         clock_gettime(CLOCK_MONOTONIC_RAW, &end_time);
         elapsed = get_execution_time(start_time, end_time);
 
-        // Impressão do tempo de execucao
-        printf("%d %f\n", n, elapsed);
-        fprintf(gp, "%d %f\n", n, elapsed);
+        // Impressão do tempo de execucao no arquivo
+        fprintf(file, "%d %f\n", n, elapsed);
     }
-    fprintf(gp, "e\n");
 
     // Liberação da memória alocada
     for (i = 0; i < n_max; i++)
@@ -89,9 +86,8 @@ int main()
     free(A);
     free(x);
     free(b);
-
-    // Fechamento do pipe para o gnuplot
-    pclose(gp);
+    // Fechamento do arquivo
+    fclose(file);
 
     return 0;
 }
