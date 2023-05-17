@@ -13,8 +13,8 @@ with open('tempo_execucao.txt', 'r') as file:
 
 # Plota o gráfico
 plt.plot(n_values, time_values, marker='o')
-plt.xlabel('Tamanho do problema')
+plt.xlabel('Tamanho de N')
 plt.ylabel('Tempo de execução (s)')
-plt.title('Tempo de Execução em Função do Tamanho do Problema')
+plt.title('Gráfico construído a partir dos resultados em FORTRAN')
 plt.grid(True)
 plt.show()

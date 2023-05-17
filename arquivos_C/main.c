@@ -76,6 +76,9 @@ int main()
 
         // Impressão do tempo de execucao no arquivo
         fprintf(file, "%d %f\n", n, elapsed);
+
+        // Impressão do tempo de execucao no terminal
+        printf("Tempo de execução para n = %d: %f segundos\n", n, elapsed);
     }
 
     // Liberação da memória alocada

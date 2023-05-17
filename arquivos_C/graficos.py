@@ -14,8 +14,8 @@ elapsed_values = [d[1] for d in data]
 
 # Plotagem do gráfico
 plt.plot(n_values, elapsed_values)
-plt.xlabel('Tamanho do problema')
+plt.xlabel('Tamanho de N')
 plt.ylabel('Tempo de execução (s)')
-plt.title('Tempo de execução em função do tamanho do problema')
+plt.title('Gráfico construído a partir dos resultados em C')
 plt.grid(True)
 plt.show()
